@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/sip23bjit/ansible_final_testing_003.git'
+            }
+        }
+        stage('Hello') {
+            steps {
+                ansiblePlaybook become: true, colorized: true, credentialsId: 'a15fb4da-7be3-48d6-a396-3a1bb1361502', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: '/opt/final_01/ansible-role-001/project.yml'
+            }
+        }
+    }
+}
